@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: Publications
-description: 期刊论文与会议发表。
+description: 期刊论文与会议发表
 nav: true
 nav_order: 4
 ---
