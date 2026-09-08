@@ -1,0 +1,754 @@
+---
+# Local theme entrypoint: keep al-folio's runtime styles and add restrained CV typography.
+---
+@charset "utf-8";
+
+@use "sass:math";
+@use "sass:string";
+
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default: "900px" }}
+);
+
+@use "themes";
+@use "layout";
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+/* Personal CV layout refinements */
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.68;
+}
+
+.publications .author > em {
+  border-bottom: 0;
+  color: var(--global-theme-color);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.post article .publications h2.bibliography {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.post {
+  .post-header {
+    margin-bottom: 1.8rem;
+
+    .post-title {
+      margin-bottom: 0.35rem;
+      font-size: 2.1rem;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .desc {
+      max-width: 42rem;
+      margin-bottom: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+  }
+
+  article {
+    font-size: 0.96rem;
+
+    h2 {
+      margin-top: 2.25rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--global-divider-color);
+      font-size: 1.22rem;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    h3 {
+      margin-top: 1.35rem;
+      margin-bottom: 0.12rem;
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.5;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+          color: var(--global-theme-color);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 0.78rem;
+    }
+
+    .cv-meta {
+      margin-bottom: 0.28rem;
+      color: var(--global-text-color-light);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .cv-detail {
+      margin-bottom: 0.9rem;
+      color: var(--global-text-color-light);
+      font-size: 0.88rem;
+      line-height: 1.72;
+    }
+
+    .skill-line {
+      margin-bottom: 0.35rem;
+      color: var(--global-text-color-light);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    ol,
+    ul {
+      margin-bottom: 0.9rem;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+  }
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 1.6rem;
+  align-items: start;
+  max-width: none;
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .more-info {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: inherit;
+    font-size: 0.82rem;
+    line-height: 1.6;
+
+    p {
+      display: block;
+      margin: 0.12rem 0;
+    }
+  }
+}
+
+.profile.float-right {
+  float: none;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 2.2rem;
+}
+
+/* About overview */
+.post article {
+  .about-hero {
+    display: grid;
+    grid-template-columns: 225px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+    margin-top: 0.2rem;
+    margin-bottom: 2.8rem;
+  }
+
+  .about-hero-photo {
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+      object-fit: cover;
+      object-position: center 38%;
+    }
+  }
+
+  .about-hero-copy {
+    max-width: 40rem;
+    padding-top: 0.15rem;
+
+    p {
+      margin-bottom: 0;
+      color: var(--global-text-color);
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    p[lang="zh-CN"] {
+      margin-top: 0.22rem;
+      color: var(--global-text-color-light);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+  }
+
+  .about-bilingual-block {
+    margin-bottom: 1rem;
+  }
+
+  .about-contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.9rem;
+    margin-top: 1.15rem;
+    color: var(--global-theme-color);
+    font-size: 0.86rem;
+    line-height: 1.6;
+
+    span,
+    a {
+      color: var(--global-theme-color);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    a:hover {
+      color: var(--global-theme-color);
+      text-decoration: underline;
+    }
+  }
+
+  .about-intro {
+    max-width: 38rem;
+    margin-top: 0.35rem;
+    margin-bottom: 2.6rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .about-overview-section {
+    margin-top: 2.4rem;
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+    }
+  }
+
+  .about-news-section {
+    margin-top: 0.8rem;
+  }
+
+  .news-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    line-height: 1.55;
+
+    tr {
+      border-top: 1px solid var(--global-divider-color);
+    }
+
+    tr:first-child {
+      border-top: 0;
+    }
+
+    tr:last-child {
+      border-bottom: 1px solid var(--global-divider-color);
+    }
+
+    td {
+      padding: 0.62rem 0;
+      vertical-align: top;
+      border-top: 0 !important;
+    }
+
+    td:first-child {
+      width: 8.5rem;
+      padding-right: 1rem;
+      color: var(--global-text-color-light);
+      white-space: nowrap;
+    }
+
+    td:last-child {
+      color: var(--global-text-color-light);
+    }
+
+    strong {
+      color: var(--global-text-color);
+      font-weight: 600;
+    }
+  }
+
+  .affiliation-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .affiliation-item,
+  .experience-item,
+  .deskcat-feature {
+    display: grid;
+    grid-template-columns: 10.5rem minmax(0, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+  }
+
+  .affiliation-item,
+  .experience-item {
+    padding: 1rem 0;
+  }
+
+  .affiliation-item + .affiliation-item,
+  .experience-item + .experience-item {
+    border-top: 1px solid var(--global-divider-color);
+  }
+
+  .affiliation-item {
+    strong,
+    small {
+      display: block;
+    }
+
+    strong {
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    small {
+      color: var(--global-text-color-light);
+      font-size: 0.77rem;
+      line-height: 1.55;
+    }
+
+    small[lang="zh-CN"] {
+      color: color-mix(in srgb, var(--global-text-color-light) 86%, transparent);
+      font-size: 0.74rem;
+    }
+  }
+
+  .affiliation-logo-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3.6rem;
+  }
+
+  .affiliation-logo,
+  .org-logo {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: left center;
+    }
+  }
+
+  .affiliation-logo {
+    width: auto;
+    height: 3rem;
+
+    &.logo-pku {
+      width: 9.4rem;
+      height: 2.9rem;
+    }
+
+    &.logo-mcgovern {
+      width: 6.5rem;
+      height: 1.45rem;
+    }
+
+    &.logo-life-sciences {
+      width: 4.4rem;
+      height: 2.8rem;
+    }
+  }
+
+  .org-logo {
+    width: 9.4rem;
+    height: 3.6rem;
+    margin-top: 0.1rem;
+
+    img {
+      object-position: left center;
+    }
+  }
+
+  .deskcat-logo {
+    width: 9.8rem;
+    height: 3.3rem;
+  }
+
+  .overview-item-main {
+    min-width: 0;
+  }
+
+  .overview-item-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .item-time {
+    flex: 0 0 auto;
+    color: var(--global-text-color-light);
+    font-size: 0.77rem;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+
+  .experience-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .experience-item {
+    h3 {
+      margin: 0 0 0.2rem;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    p,
+    small {
+      display: block;
+      margin: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    p {
+      margin-bottom: 0.18rem;
+    }
+
+    p[lang="zh-CN"] {
+      margin-top: -0.08rem;
+      color: color-mix(in srgb, var(--global-text-color-light) 86%, transparent);
+      font-size: 0.76rem;
+    }
+
+    small[lang="zh-CN"] {
+      color: color-mix(in srgb, var(--global-text-color-light) 86%, transparent);
+      font-size: 0.77rem;
+    }
+  }
+
+  .about-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--global-divider-color);
+
+    h2 {
+      border-bottom: 0;
+    }
+
+    a {
+      flex: 0 0 auto;
+      font-size: 0.78rem;
+    }
+  }
+
+  .deskcat-feature {
+    margin-top: 0.4rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--global-divider-color);
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: inherit;
+
+      .overview-item-main strong {
+        color: var(--global-theme-color);
+      }
+    }
+
+    .overview-item-main > small {
+      display: block;
+      color: var(--global-text-color-light);
+      font-size: 0.77rem;
+      line-height: 1.55;
+    }
+
+    .overview-item-main > small[lang="zh-CN"] {
+      color: color-mix(in srgb, var(--global-text-color-light) 86%, transparent);
+      font-size: 0.74rem;
+    }
+
+    .overview-item-main strong {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+
+  .about-cv-link {
+    margin-top: 2.5rem;
+    font-size: 0.84rem;
+  }
+
+  .cv-page-content {
+    font-size: 0.94rem;
+
+    > p:first-child {
+      margin-bottom: 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+
+    > h2 {
+      margin-top: 2.35rem;
+    }
+
+    h3 {
+      margin-top: 1.55rem;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+
+    ul {
+      margin-top: 0.35rem;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.55rem;
+    }
+  }
+
+  .cv-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .post-title {
+      margin-bottom: 0;
+    }
+  }
+
+  .cv-download-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.72rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 4px;
+    color: var(--global-text-color);
+    font-size: 0.82rem;
+    line-height: 1.2;
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+
+  .cv-highlight-name {
+    color: var(--global-theme-color);
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .post {
+    .post-header {
+      margin-bottom: 1.35rem;
+
+      .post-title {
+        font-size: 1.9rem;
+      }
+    }
+
+    article {
+      font-size: 0.95rem;
+
+      h2 {
+        margin-top: 1.85rem;
+        font-size: 1.14rem;
+      }
+
+      h3 {
+        margin-top: 1.15rem;
+        font-size: 1rem;
+      }
+
+      .cv-detail {
+        font-size: 0.87rem;
+      }
+    }
+  }
+
+  .profile,
+  .profile.float-right,
+  .profile.float-left {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 1.25rem;
+  }
+
+  .profile img {
+    width: min(220px, 100%);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .profile .more-info {
+    width: min(220px, 100%);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .post-header:has(.about-opportunity) {
+    grid-template-columns: 1fr;
+    row-gap: 0.45rem;
+
+    .desc {
+      grid-column: 1;
+    }
+  }
+
+  .post article {
+    .about-hero {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .about-hero-photo {
+      max-width: 220px;
+    }
+
+    .about-hero-copy {
+      max-width: none;
+      padding-top: 0;
+    }
+
+    .about-contact-line {
+      gap: 0.18rem 0.75rem;
+    }
+
+    .news-table {
+      display: block;
+
+      tbody,
+      tr,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      tr {
+        padding: 0.62rem 0;
+      }
+
+      td {
+        padding: 0;
+      }
+
+      td:first-child {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 0.18rem;
+      }
+    }
+
+    .affiliation-grid,
+    .experience-list {
+      grid-template-columns: 1fr;
+    }
+
+    .affiliation-item,
+    .experience-item,
+    .deskcat-feature {
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      gap: 0.9rem;
+    }
+
+    .affiliation-logo-group {
+      gap: 0.3rem;
+    }
+
+    .affiliation-logo {
+      &.logo-pku {
+        width: 7.8rem;
+        height: 2.45rem;
+      }
+
+      &.logo-mcgovern {
+        width: 3.7rem;
+        height: 1rem;
+      }
+
+      &.logo-life-sciences {
+        width: 2.15rem;
+        height: 1.9rem;
+      }
+    }
+
+    .deskcat-caption {
+      display: block;
+
+      small {
+        margin-top: 0.15rem;
+      }
+    }
+
+    .cv-title-row {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cv-download-button {
+      justify-content: flex-start;
+    }
+  }
+}

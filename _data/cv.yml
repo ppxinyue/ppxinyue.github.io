@@ -1,0 +1,131 @@
+cv:
+  name: 彭新玥
+  label: 具身数据 (embodied data) / 脑机 (neuroscience) / AI与社会 (social simulation)/ 科技公益/ 教育创新
+  email: xinyueshine@pku.edu.cn
+  phone: "+86 18801336120"
+  location: 中国北京
+  age: 25
+  website: https://github.com/ppxinyue
+  profiles:
+    - network: GitHub
+      url: https://github.com/ppxinyue
+    - network: Google Scholar
+      url: https://scholar.google.com/citations?user=9N6IV7sAAAAJ
+  summary: ""
+
+  sections:
+    教育经历:
+      - institution: 北京大学｜心理与认知科学学院
+        studyType: 本科
+        start_date: "2019.9"
+        end_date: "2023.7"
+      - institution: 北京大学｜前沿交叉学科研究院
+        area: 国家生物智能与机器智能重点实验室 、麦戈文脑科学研究所
+        studyType: 直博转硕
+        start_date: "2023.9"
+        end_date: "2027.7"
+
+    相关课程:
+      - bullet: 大脑与智能、信息论、AI for Science、大模型理论与应用、高等机器人学、脑机接口原理技术与应用
+
+    实习经历:
+      - company: 智元机器人｜数据平台部
+        position: 数据挖掘实习生
+        start_date: "2026.6"
+        end_date: "2026.8"
+        highlights:
+          - "(1) AutoDAAS 自动化交付管线：人脸脱敏算子、VLM预标注算子开发"
+          - "问题背景：面向百万小时级具身训练数据交付，参与 AutoDAAS 交付链路稳定性优化，参与人脸脱敏与 VLM 预标注算子开发。"
+          - "我的工作：修复对象存储寻址与幂等判断异常，减少重复触发导致的交付中断；设计 batch 化处理方案，降低调度压力。参与人脸脱敏算子开发，融合 EgoBlur 与 SCRFD 双检测器，适配第一视角、鱼眼畸变、运动模糊等复杂视频场景；参与 VLM 预标注算子优化，完成 doubao-seed-2.0、qwen3.7-plus 分层标注实验，参与三级语义 schema 与 prompt 注入设计。"
+          - "交付结果：参与支撑 AutoDAAS 管线累计交付100,000+小时具身训练数据；内部质检脱敏准确率达 90%，VLM 预标准确率提升 12%。"
+          - "(2) PB 级具身数据生产引擎 2.0：基于 Argo-Ray 的高可用基础设施升级与压测"
+          - "问题背景：针对 AutoDAAS 1.0 在算子注册、可视化编排、并发调度和大规模数据生产中的瓶颈，参与 2.0 分布式生产引擎升级。"
+          - "我的工作：作为方案汇报人参与技术评审，推动采用 Argo 镜像级粗编排 + Ray 算子级细编排与分布式计算架构；参与算子 SDK、CI/CD、编排前端、集群部署及 Fluent Bit / Loki / Prometheus / Grafana 可观测链路 MVP 开发。参与处理 ray 集群挖矿的突发安全事故。"
+          - "交付结果：生产压测中，8,000 核 * 8h 完成 10,000h 数据端到端生产，成功率 100%；相比 1.0 方案吞吐提升约 4 倍，算力节省约 60%。"
+          - "(3) 湖仓建设与 QuickBI 看板交付：内场设备监控看板开发"
+          - "我的工作：面向运营侧设备监控需求，独立完成数据接入、建模到 BI 交付闭环：将机器回流数据通过 Flink 同步至 Hadoop Iceberg 表，将飞书运营数据通过开放平台 API 接入，并使用 DolphinScheduler 调度 PySpark 实现小时级落湖；完成 ODS-DWD 分层建模，统一在线率、使用率、MTTR 等指标口径，共交付 58 张 QuickBI 图表，支持设备状态监控与故障响应分析。"
+      - company: 智谱AI｜教育智能体业务
+        position: AI产品实习生
+        start_date: "2026.3"
+        end_date: "2026.5"
+        highlights:
+          - "问题背景：面向 C 端教育产品“智启”，参与 GLM 系列模型在 K12 拍照搜题与个性化推荐场景中的评测和策略优化。"
+          - "我的工作：(1)参与拍照搜题 benchmark 定义与模型评测，拆分题目识别、知识库检索、模型推理、安全适龄输出等环节，开展模型对比实验和 prompt 策略实验，收集badcase反哺模型训练。(2) 参与基于个性化知识图谱的题目推荐算法设计。"
+          - "交付结果：(1) 拍照搜题客观准确率达98.5%，主观评分95，优于主要竞品；(2) 题目推荐功能上线后WAU 提升8%。"
+
+    科研项目:
+      - name: Cerebral Cortex 已发表｜人际交流中的多模态行为神经同步与贝叶斯意图推断｜第一作者
+        url: https://academic.oup.com/cercor/article/34/13/104/7661140
+        start_date: "2023.1"
+        end_date: "2025.12"
+        highlights:
+          - "问题背景：结合 fNIRS/fMRI、多模态行为时序和贝叶斯建模，研究真实人际交流中的行为-神经同步性及意图推断机制，构建多模态人类交互数据分析框架。"
+          - "我的工作：(1) 第一作者完成 128 名被试双人互动中的行为与 fNIRS 脑成像数据采集、清洗和分析；基于 OpenFace 自动提取面部行为特征，使用 WTC / DCCA 计算语言、表情、行为节律与神经活动的多模态时序同步，定位额极区、颞下回等脑区在人际协作、自我概念和情绪同步中的作用；结合孤独症特质测量，验证人际社交中的双共情模型。(2) 使用贝叶斯框架建模人类如何基于相同 context，仅通过有限信息实现对他人意图的高效推理，将语境经验建模为 prior，将当前线索建模为 likelihood，并刻画 posterior belief update 过程。结合fmri定位背外侧前额叶和纹状体功能。"
+          - "研究产出：第一项工作发表于 Cerebral Cortex；第二项工作形成了面向人类交流的贝叶斯建模框架，正在结合孤独症人群做临床泛化。"
+      - name: Under review｜真实儿童数据驱动的 LLM Agent 社会仿真与政策模拟｜第一作者
+        url: https://mp.weixin.qq.com/s/1RphTTeklLvYG8uc4snP4g
+        start_date: "2024.3"
+        end_date: "2026.6"
+        highlights:
+          - "问题背景：LLM social simulation 与社会 alignment 研究的核心问题，是模型生成的群体互动是否能在表征分布、行为分布和社会规范上对齐真实人类；同时，为真实社会中成本高、难实验的研究，提供可重复、可消融的政策模拟环境。"
+          - "我的工作：作为第一作者，基于北大附幼102名儿童1.5年的纵向观测、访谈与心理测评数据，构建一对一映射的儿童 LLM Agent 群体，将 Theory of Mind、同理心、家庭环境等变量转化为 agent profile / memory / value 表征；设计心理测评、行为标注与专家盲评结合的评估框架，对比真实儿童、agent 仿真和直接 LLM 生成之间的认知表征分布与互动行为分布差异；进一步通过标签信息、行为解释、直接互动和教师介入等变量构建融合教育政策仿真实验。"
+          - "研究发现：7 组独立仿真生成 6,720 条交互行为，agents 自发涌现游戏、冲突、退缩、亲社会等群体互动模式；专家盲评中，agent 互动被判断为真实儿童互动的比例达 63%，显著高于直接 LLM 生成的 23%。结果表明，真实个体数据校准能够提升 LLM Agent 在社会规范理解、群体接纳和长期互动行为上的 alignment；政策仿真进一步揭示，标签信息、行为解释和教师介入会系统性影响儿童接纳度与友谊形成。"
+
+    其他发表（期刊）:
+      - title: Pupillometry reveals hyper-arousal in response to auditory stimuli in autistic children.
+        url: https://doi.org/10.1631/jzus.B2300462
+        date: "2024"
+        publisher: Journal of Zhejiang University-SCIENCE B, 25(11), 996–1008. (一区)
+        summary: "Song, C., Ma, R., Ni, W., <span class=\"cv-highlight-name\">Peng, X.</span>, Li, X., Shi, R., Zhang, Y., & Yi, L. (2024)."
+      - title: The role of empathy in prosocial behavior in autistic and neurotypical children.
+        url: https://doi.org/10.1093/chidev/aacag007
+        date: "2026"
+        publisher: Child Development, 97(2), 437–450. (一区)
+        summary: "Li, T., Decety, J., Hua, Z., <span class=\"cv-highlight-name\">Peng, X.</span>, Shi, R., & Yi, L. (2026)."
+      - title: "Pictures or texts: Eye gazing patterns of preschoolers with ASD in picture book reading."
+        url: https://www.sciencedirect.com/science/article/abs/pii/S305065652600204X
+        date: "2026"
+        publisher: Research in Autism, 137.
+        summary: "Luo, H., <span class=\"cv-highlight-name\">Peng, X.</span>, Sun, J., & Zhao, J. (2026)."
+
+    其他发表（会议）:
+      - title: Early Contact with Autistic Peers Promotes Acceptance in Actual and LLM-Simulated Preschool [Poster].
+        url: https://insar.confex.com/insar/2026/meetingapp.cgi/Paper/54139
+        date: "2026"
+        publisher: International Society for Autism Research (INSAR), Prague, Czech Republic.
+        summary: "<span class=\"cv-highlight-name\">Peng, X.</span>, Li, T., Zhao, H., Su, X., Jiang, Y., An, Z., Zhu, L.*, Yi, L*. (2026, April)."
+      - title: "Shaping young minds: How autism labels, environment, and developmental factors affect preschoolers' acceptance of autistic behaviors [Oral presentation]."
+        url: https://insar.confex.com/insar/2025/meetingapp.cgi/Paper/49978
+        date: "2025"
+        publisher: International Society for Autism Research (INSAR), Seattle, USA.
+        summary: "<span class=\"cv-highlight-name\">Peng, X.</span>,# Li, T.,# Zhao, H., Su, X., Jiang, Y., An, Z., Tang, T., Yi, L*. (2025, May)."
+      - title: Atypical neural response to hearing one’s own name in autistic children [Poster].
+        url: https://insar.confex.com/insar/2024/meetingapp.cgi/Paper/46348
+        date: "2024"
+        publisher: International Society for Autism Research (INSAR), Melbourne, Australia.
+        summary: "Liu. G., <span class=\"cv-highlight-name\">Peng, X.</span>, Yi, L*. (2024, May)."
+      - title: "How Autistic Children Recognize Mask-Wearing and Sunglasses-Wearing Faces: Implications for Face Processing [Poster]."
+        url: https://insar.confex.com/insar/2025/meetingapp.cgi/Paper/49979
+        date: "2025"
+        publisher: International Society for Autism Research (INSAR), Seattle, USA.
+        summary: "An, Z., Ni, W., <span class=\"cv-highlight-name\">Peng, X.</span>, Li, T., Shi, R., Yi, L*. (2025, May)."
+      - title: "Do Autistic Children Share with People in Pain: The Role of Empathy in Prosocial Behavior [Poster]."
+        url: https://insar.confex.com/insar/2025/meetingapp.cgi/Paper/49122
+        date: "2025"
+        publisher: International Society for Autism Research (INSAR), Seattle, USA.
+        summary: "Li, T., Decety, J., Hua, Z., <span class=\"cv-highlight-name\">Peng, X.</span>, Yi, L*. (2025, May)."
+
+    个人开发:
+      - name: Pimer/ DeskCat 桌面效率管理与陪伴灵宠
+        url: https://www.ppdeskcat.site/
+        start_date: "2025.3"
+        end_date: "2026.5"
+        highlights:
+          - "跨平台桌面 AI 伴侣应用，基于 Electron、React、TypeScript 构建，集成桌面宠物、AI 对话、专注提醒与工作时间线记录等功能。项目采用 local-first 设计，支持本地数据存储、API Key 安全管理、窗口状态感知等，共收获4000+阅读，300+用户。"
+
+    其他技能:
+      - bullet: "技术栈：Python, SQL, MATLAB, R；熟练使用 Claude Code、Codex、Cursor 等AI辅助开发工具。"
+      - bullet: "人因技能：fNIRS (近红外脑成像), fMRI (磁共振成像), eye-tracking (眼动), ECG (心电), EMG (肌电)"
+      - bullet: "相关资质：ADOS-2孤独症诊断研究资质、儿童韦氏智力测量资质、MINI心理健康访谈资质；高中数学教师资格证。"
+      - bullet: "社会活动：北京大学第七届主持人大赛十佳主持人、2025年度国际组织人才培养项目成员。"
+      - bullet: "荣誉：北京大学兴业奖学金、二等奖学金、三好学生、第29届挑战杯银奖、最佳辩手。"
