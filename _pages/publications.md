@@ -19,29 +19,77 @@ nav_order: 4
 
 </div>
 
-<section class="unpublished-projects">
-  <h2>Unpublished Projects</h2>
-  <div class="unpublished-project-list">
-    <article class="unpublished-project-item">
-      <img src="{{ '/assets/img/project_preview/child-robot-interaction.png' | relative_url }}" alt="Child-Robot Interaction project preview" />
-      <div>
-        <h3>Child-Robot Interaction</h3>
+<div class="publications unpublished-projects">
+  <h2 class="bibliography">Unpublished Projects</h2>
+  <ol class="bibliography unpublished-project-list">
+    <li>
+      <div class="row">
+        <div class="col col-sm-2 abbr unpublished-project-preview">
+          <figure>
+            <picture>
+              <img
+                src="{{ '/assets/img/project_preview/child-robot-interaction.png' | relative_url }}"
+                class="preview z-depth-1 rounded"
+                width="100%"
+                height="auto"
+                alt="Child-Robot Interaction project preview"
+                data-zoomable
+                loading="eager"
+              />
+            </picture>
+          </figure>
+        </div>
+        <div id="child-robot-interaction" class="col-sm-8 unpublished-project-entry">
+          <div class="title">Child-Robot Interaction</div>
+        </div>
       </div>
-    </article>
-    <article class="unpublished-project-item">
-      <img src="{{ '/assets/img/project_preview/autism-clinical-interview.png' | relative_url }}" alt="Autism Clinical Interview project preview" />
-      <div>
-        <h3>Autism Clinical Interview</h3>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col col-sm-2 abbr unpublished-project-preview">
+          <figure>
+            <picture>
+              <img
+                src="{{ '/assets/img/project_preview/autism-clinical-interview.png' | relative_url }}"
+                class="preview z-depth-1 rounded"
+                width="100%"
+                height="auto"
+                alt="Autism Clinical Interview project preview"
+                data-zoomable
+                loading="eager"
+              />
+            </picture>
+          </figure>
+        </div>
+        <div id="autism-clinical-interview" class="col-sm-8 unpublished-project-entry">
+          <div class="title">Autism Clinical Interview</div>
+        </div>
       </div>
-    </article>
-    <article class="unpublished-project-item">
-      <img src="{{ '/assets/img/project_preview/neuroeye-developmental-assessment.png' | relative_url }}" alt="NeuroEye project preview" />
-      <div>
-        <h3>NeuroEye: Machine Learning for Developmental Assessment</h3>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col col-sm-2 abbr unpublished-project-preview">
+          <figure>
+            <picture>
+              <img
+                src="{{ '/assets/img/project_preview/neuroeye-developmental-assessment.png' | relative_url }}"
+                class="preview z-depth-1 rounded"
+                width="100%"
+                height="auto"
+                alt="NeuroEye project preview"
+                data-zoomable
+                loading="eager"
+              />
+            </picture>
+          </figure>
+        </div>
+        <div id="neuroeye-developmental-assessment" class="col-sm-8 unpublished-project-entry">
+          <div class="title">NeuroEye: Machine Learning for Developmental Assessment</div>
+        </div>
       </div>
-    </article>
-  </div>
-</section>
+    </li>
+  </ol>
+</div>
 
 <div class="project-detail-overlay" id="project-detail-overlay" hidden aria-hidden="true">
   <div class="project-detail-backdrop" data-project-detail-close></div>
