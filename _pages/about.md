@@ -187,21 +187,23 @@ latest_posts:
   <section class="about-overview-section about-project-section">
     <div class="about-section-heading">
       <h2>Personal development</h2>
-      <a class="project-link-button" href="https://www.ppdeskcat.site/">open project ↗</a>
     </div>
-    <a class="deskcat-feature overview-item" href="https://www.ppdeskcat.site/">
+    <div class="deskcat-feature overview-item">
       <span class="org-logo deskcat-logo"><img src="{{ '/assets/img/deskcat-hero.png' | relative_url }}" alt="DeskCat project homepage" /></span>
       <span class="overview-item-main">
         <span class="overview-item-heading">
           <strong>Pimer / DeskCat</strong>
-          <small class="item-time">2025.3 / 2026.5</small>
+          <span class="experience-meta">
+            <small class="item-time">2025.3 / 2026.5</small>
+            <a class="project-link-button" href="https://www.ppdeskcat.site/">open project ↗</a>
+          </span>
         </span>
         <small lang="en">Desktop productivity and AI companion application · Independent development</small>
         <small lang="zh-CN">桌面效率管理与陪伴灵宠 · 自主开发</small>
         <small lang="en">4000+ reads, 300+ users.</small>
         <small lang="zh-CN">4000+ 阅读，300+ 用户。</small>
       </span>
-    </a>
+    </div>
   </section>
 </div>
 
