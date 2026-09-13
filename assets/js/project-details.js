@@ -2,18 +2,11 @@
   const overlay = document.getElementById("project-detail-overlay");
   if (!overlay || !window.crypto?.subtle) return;
 
-  const title = document.getElementById("project-detail-title");
   const form = overlay.querySelector(".project-detail-form");
   const input = document.getElementById("project-detail-password");
-  const status = overlay.querySelector(".project-detail-status");
-  const viewer = overlay.querySelector(".project-detail-viewer");
-  const preview = viewer?.querySelector("img");
-  const openLink = overlay.querySelector(".project-detail-open-link");
-  const download = overlay.querySelector(".project-detail-download");
 
   let currentUrl = "";
   let currentPdfUrl = "";
-  let currentPreviewUrl = "";
   let lastFocused = null;
 
   const decodeBase64 = (value) => {
@@ -25,30 +18,16 @@
     return bytes;
   };
 
-  const setStatus = (message, isError = false) => {
-    status.textContent = message;
-    status.classList.toggle("is-error", isError);
+  const setError = (hasError = false) => {
+    form.classList.toggle("has-error", hasError);
+    input.setAttribute("aria-invalid", hasError ? "true" : "false");
   };
 
-  const clearViewer = () => {
+  const clearPdfUrl = () => {
     if (currentPdfUrl) {
       URL.revokeObjectURL(currentPdfUrl);
       currentPdfUrl = "";
     }
-    if (currentPreviewUrl) {
-      URL.revokeObjectURL(currentPreviewUrl);
-      currentPreviewUrl = "";
-    }
-    if (preview) preview.removeAttribute("src");
-    [openLink, download].forEach((link) => {
-      if (!link) return;
-      link.removeAttribute("href");
-      link.removeAttribute("download");
-    });
-    if (download) {
-      download.textContent = "Download this page PDF →";
-    }
-    if (viewer) viewer.hidden = true;
   };
 
   const closeModal = () => {
@@ -57,17 +36,16 @@
     document.body.classList.remove("project-detail-overlay-open");
     input.value = "";
     currentUrl = "";
-    setStatus("");
-    clearViewer();
+    setError(false);
+    clearPdfUrl();
     if (lastFocused) lastFocused.focus();
   };
 
   const openModal = (button) => {
     lastFocused = button;
     currentUrl = button.dataset.projectUrl || "";
-    title.textContent = button.dataset.projectTitle || "Project details";
-    clearViewer();
-    setStatus("");
+    clearPdfUrl();
+    setError(false);
     overlay.hidden = false;
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("project-detail-overlay-open");
@@ -107,30 +85,19 @@
   };
 
   const openEncryptedPdf = async (password) => {
-    setStatus("Decrypting...");
-    clearViewer();
+    setError(false);
+    clearPdfUrl();
     const response = await fetch(currentUrl, { cache: "no-store" });
     if (!response.ok) throw new Error("detail-not-found");
 
     const payload = await response.json();
     const salt = decodeBase64(payload.salt);
     const key = await deriveKey(password, salt, payload.iterations || 250000);
-    const [pdfBuffer, previewBuffer] = await Promise.all([
-      decryptFile(payload.pdf, key),
-      decryptFile(payload.preview, key),
-    ]);
+    const pdfBuffer = await decryptFile(payload.pdf, key);
 
     const pdfBlob = new Blob([pdfBuffer], { type: payload.pdf.mime || "application/pdf" });
-    const previewBlob = new Blob([previewBuffer], { type: payload.preview.mime || "image/jpeg" });
     currentPdfUrl = URL.createObjectURL(pdfBlob);
-    currentPreviewUrl = URL.createObjectURL(previewBlob);
-
-    preview.src = currentPreviewUrl;
-    openLink.href = currentPdfUrl;
-    download.href = currentPdfUrl;
-    download.download = payload.pdf.filename || "project-detail.pdf";
-    viewer.hidden = false;
-    setStatus("");
+    return currentPdfUrl;
   };
 
   document.querySelectorAll(".project-detail-button").forEach((button) => {
@@ -145,15 +112,26 @@
     event.preventDefault();
     const password = input.value.trim();
     if (!password) {
-      setStatus("Please enter the password.", true);
+      setError(true);
       input.focus();
       return;
     }
 
+    const pdfWindow = window.open("", "_blank");
+
     try {
-      await openEncryptedPdf(password);
+      const pdfUrl = await openEncryptedPdf(password);
+      if (pdfWindow) {
+        pdfWindow.location.href = pdfUrl;
+      } else {
+        window.location.href = pdfUrl;
+      }
+      currentPdfUrl = "";
+      closeModal();
+      window.setTimeout(() => URL.revokeObjectURL(pdfUrl), 60000);
     } catch (error) {
-      setStatus("Password incorrect or file unavailable.", true);
+      if (pdfWindow) pdfWindow.close();
+      setError(true);
       input.select();
     }
   });

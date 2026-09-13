@@ -150,7 +150,7 @@ latest_posts:
                 class="project-detail-button"
                 type="button"
                 data-project-title="智元机器人 · 项目详情"
-                data-project-url="assets/protected/zhiyuan-robotics-page39.bundle.enc.json"
+                data-project-url="{{ '/assets/protected/zhiyuan-robotics-page39.bundle.enc.json' | relative_url }}"
               >view details</button>
             </span>
           </div>
@@ -171,7 +171,7 @@ latest_posts:
                 class="project-detail-button"
                 type="button"
                 data-project-title="智谱 AI · 项目详情"
-                data-project-url="assets/protected/zhipu-ai-page40.bundle.enc.json"
+                data-project-url="{{ '/assets/protected/zhipu-ai-page40.bundle.enc.json' | relative_url }}"
               >view details</button>
             </span>
           </div>
@@ -187,7 +187,7 @@ latest_posts:
   <section class="about-overview-section about-project-section">
     <div class="about-section-heading">
       <h2>Personal development</h2>
-      <a href="https://www.ppdeskcat.site/">Open project ↗</a>
+      <a class="project-link-button" href="https://www.ppdeskcat.site/">open project ↗</a>
     </div>
     <a class="deskcat-feature overview-item" href="https://www.ppdeskcat.site/">
       <span class="org-logo deskcat-logo"><img src="{{ '/assets/img/deskcat-hero.png' | relative_url }}" alt="DeskCat project homepage" /></span>
@@ -209,21 +209,13 @@ latest_posts:
 
 <div class="project-detail-overlay" id="project-detail-overlay" hidden aria-hidden="true">
   <div class="project-detail-backdrop" data-project-detail-close></div>
-  <div class="project-detail-card" role="dialog" aria-labelledby="project-detail-title">
+  <div class="project-detail-card" role="dialog">
     <button class="project-detail-close" type="button" data-project-detail-close aria-label="Close project detail">×</button>
-    <h2 id="project-detail-title">Project details</h2>
-    <p class="project-detail-note">请输入密码查看对应项目页。</p>
     <form class="project-detail-form">
-      <input id="project-detail-password" type="password" inputmode="numeric" autocomplete="off" placeholder="Password" />
+      <input id="project-detail-password" type="password" inputmode="numeric" autocomplete="off" placeholder="password" aria-label="password" />
       <button type="submit">open</button>
     </form>
-    <p class="project-detail-status" role="status" aria-live="polite"></p>
-    <div class="project-detail-viewer" hidden>
-      <img alt="Project detail preview" />
-      <a class="project-detail-open-link" href="#" target="_blank" rel="noopener">Open PDF →</a>
-      <a class="project-detail-download" href="#" download>Download this page PDF →</a>
-    </div>
   </div>
 </div>
 
-<script src="assets/js/project-details.js"></script>
+<script src="{{ '/assets/js/project-details.js' | relative_url }}"></script>

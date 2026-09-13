@@ -46,6 +46,10 @@ body.project-detail-overlay-open {
   border-bottom: 0;
 }
 
+.post article .publications .links .publication-detail-button {
+  vertical-align: baseline;
+}
+
 .container {
   max-width: 900px;
 }
@@ -430,8 +434,9 @@ body.project-detail-overlay-open {
   .experience-meta {
     display: inline-flex;
     flex: 0 0 auto;
-    align-items: center;
-    gap: 0.65rem;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
   }
 
   .item-time {
@@ -480,7 +485,8 @@ body.project-detail-overlay-open {
     }
   }
 
-  .project-detail-button {
+  .project-detail-button,
+  .project-link-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -528,22 +534,13 @@ body.project-detail-overlay-open {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: min(980px, calc(100vw - 2rem));
-    max-height: calc(100vh - 2rem);
-    margin: 1rem auto;
-    padding: 1.15rem;
+    width: min(340px, calc(100vw - 2rem));
+    margin: 20vh auto 0;
+    padding: 1.05rem 1rem 1rem;
     border: 1px solid var(--global-divider-color);
-    border-radius: 14px;
+    border-radius: 12px;
     background: var(--global-bg-color);
-    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
-
-    h2 {
-      margin: 0 2.2rem 0.35rem 0;
-      padding: 0;
-      border: 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
+    box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
   }
 
   .project-detail-close {
@@ -567,30 +564,26 @@ body.project-detail-overlay-open {
     }
   }
 
-  .project-detail-note,
-  .project-detail-status {
-    margin: 0 0 0.75rem;
-    color: var(--global-text-color-light);
-    font-size: 0.82rem;
-  }
-
-  .project-detail-status.is-error {
-    color: var(--global-theme-color);
-  }
-
   .project-detail-form {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    margin: 0;
+    padding-right: 2.1rem;
 
     input {
-      width: min(13rem, 55vw);
+      min-width: 0;
+      flex: 1 1 auto;
       padding: 0.42rem 0.58rem;
       border: 1px solid var(--global-divider-color);
       border-radius: 8px;
       background: var(--global-bg-color);
       color: var(--global-text-color);
       font-size: 0.86rem;
+    }
+
+    &.has-error input {
+      border-color: var(--global-theme-color);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--global-theme-color) 12%, transparent);
     }
 
     button {
@@ -605,27 +598,44 @@ body.project-detail-overlay-open {
     }
   }
 
-  .project-detail-viewer {
-    min-height: 0;
+  .unpublished-projects {
+    margin-top: 2.6rem;
+
+    h2 {
+      margin-bottom: 1.1rem;
+    }
+  }
+
+  .unpublished-project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .unpublished-project-item {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 1.15rem;
+    align-items: center;
+    padding: 0 0 1.15rem;
+    border-bottom: 1px solid var(--global-divider-color);
 
     img {
       display: block;
       width: 100%;
-      max-height: min(68vh, 640px);
+      max-height: 8.4rem;
       border: 1px solid var(--global-divider-color);
       border-radius: 10px;
       background: #fff;
       object-fit: contain;
     }
-  }
 
-  .project-detail-open-link,
-  .project-detail-download {
-    display: inline-flex;
-    margin-top: 0.65rem;
-    margin-right: 1rem;
-    color: var(--global-theme-color);
-    font-size: 0.8rem;
+    h3 {
+      margin: 0;
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
   }
 
   .about-section-heading {
@@ -642,6 +652,11 @@ body.project-detail-overlay-open {
     a {
       flex: 0 0 auto;
       font-size: 0.78rem;
+    }
+
+    .project-link-button {
+      font-size: 0.68rem;
+      text-decoration: none;
     }
   }
 
@@ -880,6 +895,15 @@ body.project-detail-overlay-open {
       flex-direction: column;
       align-items: flex-end;
       gap: 0.28rem;
+    }
+
+    .unpublished-project-item {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+
+      img {
+        max-height: none;
+      }
     }
 
     .affiliation-logo-group {
