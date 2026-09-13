@@ -30,6 +30,10 @@ body {
   line-height: 1.68;
 }
 
+body.project-detail-overlay-open {
+  overflow: hidden;
+}
+
 .publications .author > em {
   border-bottom: 0;
   color: var(--global-theme-color);
@@ -423,6 +427,13 @@ body {
     gap: 1rem;
   }
 
+  .experience-meta {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
   .item-time {
     flex: 0 0 auto;
     color: var(--global-text-color-light);
@@ -467,6 +478,154 @@ body {
       color: color-mix(in srgb, var(--global-text-color-light) 86%, transparent);
       font-size: 0.77rem;
     }
+  }
+
+  .project-detail-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.13rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--global-theme-color) 38%, var(--global-divider-color));
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-theme-color);
+    cursor: pointer;
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-transform: lowercase;
+    transition:
+      border-color 0.15s ease,
+      background-color 0.15s ease,
+      color 0.15s ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--global-theme-color);
+      background: color-mix(in srgb, var(--global-theme-color) 8%, transparent);
+      color: var(--global-theme-color);
+      outline: none;
+    }
+  }
+
+  .project-detail-overlay[hidden] {
+    display: none;
+  }
+
+  .project-detail-overlay {
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+  }
+
+  .project-detail-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.48);
+  }
+
+  .project-detail-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(980px, calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    margin: 1rem auto;
+    padding: 1.15rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 14px;
+    background: var(--global-bg-color);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+
+    h2 {
+      margin: 0 2.2rem 0.35rem 0;
+      padding: 0;
+      border: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+
+  .project-detail-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.85rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+    font-size: 1.45rem;
+    line-height: 1;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--global-theme-color);
+      outline: none;
+    }
+  }
+
+  .project-detail-note,
+  .project-detail-status {
+    margin: 0 0 0.75rem;
+    color: var(--global-text-color-light);
+    font-size: 0.82rem;
+  }
+
+  .project-detail-status.is-error {
+    color: var(--global-theme-color);
+  }
+
+  .project-detail-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    input {
+      width: min(13rem, 55vw);
+      padding: 0.42rem 0.58rem;
+      border: 1px solid var(--global-divider-color);
+      border-radius: 8px;
+      background: var(--global-bg-color);
+      color: var(--global-text-color);
+      font-size: 0.86rem;
+    }
+
+    button {
+      padding: 0.42rem 0.8rem;
+      border: 1px solid var(--global-theme-color);
+      border-radius: 8px;
+      background: var(--global-theme-color);
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+  }
+
+  .project-detail-viewer {
+    min-height: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      max-height: min(68vh, 640px);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 10px;
+      background: #fff;
+      object-fit: contain;
+    }
+  }
+
+  .project-detail-open-link,
+  .project-detail-download {
+    display: inline-flex;
+    margin-top: 0.65rem;
+    margin-right: 1rem;
+    color: var(--global-theme-color);
+    font-size: 0.8rem;
   }
 
   .about-section-heading {
@@ -711,6 +870,16 @@ body {
     .deskcat-feature {
       grid-template-columns: 5.5rem minmax(0, 1fr);
       gap: 0.9rem;
+    }
+
+    .overview-item-heading {
+      align-items: flex-start;
+    }
+
+    .experience-meta {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.28rem;
     }
 
     .affiliation-logo-group {
